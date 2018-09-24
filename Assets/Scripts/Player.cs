@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
 	[SerializeField] protected float walkSpeed;
 	[SerializeField] protected float jumpSpeed;
 	[SerializeField] protected float readyJumpTime;
+	[SerializeField] protected float maxTimeBeforeStop = 0.1f;
+	protected float moveTime;
 	protected bool onFloor;
 	protected bool readyToJump;
 	protected bool jumping;
@@ -66,17 +68,20 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
+        Vector2 move = rb.velocity;
+		if (readyToJump) {
+			InputGameController.Instance.setInput (true);
+			readyToJump = false;
+			move.y = jumpSpeed;
+		}
+		if (!onFloor && !jumping && move.y > 0) {
+			move.y = 0;
+		}
+        rb.velocity = move;  
 
-            Vector2 move = rb.velocity;
-			if (readyToJump) {
-				InputGameController.Instance.setInput (true);
-				readyToJump = false;
-				move.y = jumpSpeed;
-			}
-			if (!onFloor && !jumping && move.y > 0) {
-				move.y = 0;
-			}
-            rb.velocity = move;               
+		if (Time.time - moveTime > maxTimeBeforeStop) {
+			stop ();
+		}
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -138,6 +143,7 @@ public class Player : MonoBehaviour {
 		}
         // set player walking animation
 		animator.SetBool ("walking", true);
+		moveTime = Time.time;
     }
     public void stop() {
         // stop player walking movement

@@ -22,11 +22,8 @@ public class InputGameController : InputController {
 	#endregion
 
     #region Variables
-	const float MAX_TIME_BEFORE_STOP = 0.1f;
-
 	protected bool controllable = true;
     protected Player player;
-	protected float moveTime;
     #endregion
 
     #region Behaviours
@@ -44,9 +41,6 @@ public class InputGameController : InputController {
 		
 	public override void Update () {
 		base.Update ();
-		if (Time.time - moveTime > MAX_TIME_BEFORE_STOP) {
-			stop ();
-		}
 	}
     #endregion
 
@@ -92,7 +86,6 @@ public class InputGameController : InputController {
 		if (player.isFreezed () || !controllable) {
 			return;
 		}
-		moveTime = Time.time;
 		player.move(direction);
 	}
 
