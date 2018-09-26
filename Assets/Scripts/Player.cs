@@ -51,6 +51,9 @@ public class Player : MonoBehaviour {
 	public bool isFreezed() {
 		return freezed;
 	}
+	public bool isOnFloor() {
+		return onFloor;
+	}
     #endregion
 
     #region Behaviors
