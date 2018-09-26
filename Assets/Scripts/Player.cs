@@ -56,6 +56,12 @@ public class Player : MonoBehaviour {
 	}
     #endregion
 
+	#region Mutators
+	public void setJumpSpeed(float speed) {
+		jumpSpeed = speed;
+	}
+	#endregion
+
     #region Behaviors
     public void Awake() {
         if (Player.Instance != this) {
