@@ -13,4 +13,7 @@ public class AreaDetector : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D collider) {
 		listener.receive (gameObject, collider.name);
 	}
+	public void OnTriggerExit2D(Collider2D collider) {
+		listener.receive (gameObject, collider.name + "Exit");
+	}
 }

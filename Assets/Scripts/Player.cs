@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
 	protected GameObject floor;
 	protected Rigidbody2D rb;
 	protected Animator animator;
+	protected bool gotHit;
     #endregion
 
     #region Accessors
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour {
 		groundHits = new RaycastHit2D[32];
 		rb = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
+		gotHit = false;
     }
 
     void Update() {
@@ -83,12 +85,9 @@ public class Player : MonoBehaviour {
 			readyToJump = false;
 			move.y = jumpSpeed;
 		}
-		if (!onFloor && !jumping && move.y > 0) {
-			move.y = 0;
-		}
         rb.velocity = move;  
 
-		if (Time.time - moveTime > maxTimeBeforeStop) {
+		if (!gotHit && Time.time - moveTime > maxTimeBeforeStop) {
 			stop ();
 		}
     }
@@ -164,6 +163,15 @@ public class Player : MonoBehaviour {
         // unset player walking animation
 		animator.SetBool ("walking", false);
     }
+	public IEnumerator hit(Vector2 force, float second) {
+		InputGameController.Instance.setInput (false);
+		gotHit = true;
+		rb.AddForce (force);
+		yield return new WaitForSeconds (second);
+		gotHit = false;
+		InputGameController.Instance.setInput (true);
+		yield return null;
+	}
         
 	public virtual void teleport(Vector3 position, bool toFloor) {
 		//calculate how the distance between player and floor
