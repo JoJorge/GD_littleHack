@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DialogTrigger : MonoBehaviour {
 
 	[SerializeField] private ConditionStrategy condition;
-	[SerializeField] private Sprite head;
+	[SerializeField] private List<Sprite> heads;
 	[SerializeField] private List<string> dialogs;
 	private int idx;
 	private Image UIHead;
@@ -22,7 +22,7 @@ public class DialogTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (condition.fulfill ()) {
-			UIHead.sprite = head;
+			UIHead.sprite = heads[idx];
 			UIText.text = dialogs [idx];
 			idx = (idx + 1) % dialogs.Count;
 		}
