@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a0d935dd58d1c4d853d6f29793dc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 3
+  interval: 1
   direction: 1
-  speed: 5
+  speed: 6
   saliva: {fileID: 1128912133380200, guid: bbcf46ebb3baef84ab2d57dce9b10ecd, type: 2}
   alpacaSaliva: {fileID: 21300000, guid: d645109918e0da247a992695d5808ab7, type: 3}
   openInterval: 0.1

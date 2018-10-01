@@ -166,6 +166,7 @@ public class Player : MonoBehaviour {
 	public IEnumerator hit(Vector2 force, float second) {
 		InputGameController.Instance.setInput (false);
 		gotHit = true;
+        rb.velocity = Vector2.zero;
 		rb.AddForce (force);
 		yield return new WaitForSeconds (second);
 		gotHit = false;

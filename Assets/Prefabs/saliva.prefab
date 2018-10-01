@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7553b0dffd95fd40affcfc67e5b0a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 5, y: 0}
-  force: {x: 80, y: 150}
+  velocity: {x: 6, y: 0}
+  force: {x: 150, y: 130}
   freezeTime: 0.5
 --- !u!212 &212132037381125562
 SpriteRenderer:
